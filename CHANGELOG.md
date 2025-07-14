@@ -1,41 +1,66 @@
-# CHANGELOG
+# Changelog
 
-Todas las modificaciones importantes de este proyecto se documentarán en este archivo.
+Todos los cambios notables en este proyecto serán documentados en este archivo.
 
-El formato sigue las recomendaciones de [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y este proyecto utiliza la licencia [GPLv3](LICENSE).
+El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
+y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+- Frontend completo con React y TypeScript
+- Interfaz moderna con Material UI (MUI)
+- Soporte de tema claro/oscuro con modo oscuro por defecto
+- Navegación lateral con menú hamburguesa
+- Páginas de registro e historial de signos vitales
+- Estructura modular de componentes y páginas
+- Optimización para dispositivos móviles
+
+### Changed
+- Actualizada documentación del README principal
+- Mejorada la estructura del proyecto con carpetas organizadas
+
+## [0.2.0] - 2025-01-14
+
+### Added
 - Sistema completo de control de signos vitales
-- Modelo SignosVitales con validaciones médicas
-- Endpoints para registro, consulta y estadísticas de signos vitales
-- Clasificación automática de glucosa según ADA
-- Clasificación automática de presión arterial según AHA
-- Alertas automáticas para valores fuera de rango
-- Cálculo de IMC y clasificación de peso
-- Seguimiento de oxigenación y temperatura
-- Estadísticas y tendencias de signos vitales
-- Funcionalidades y mejoras en desarrollo.
+- Modelo SignosVitales con campos médicos completos
+- API RESTful para gestión de signos vitales
+- Clasificación automática según estándares médicos (ADA, AHA, OMS)
+- Alertas automáticas para valores críticos
+- Cálculo automático de IMC y clasificación de peso
+- Rutas para estadísticas y alertas
+- Documentación completa de la API
+- Ejemplos prácticos de uso con comandos curl
 
-## [1.0.0] - 2024-06-XX
-### Añadido
-- Estructura inicial MERN (MongoDB, Express, React, Node.js) para control de medicamentos, peso, IMC y calorías.
-- Modelos backend: Usuario (con datos personales, condiciones médicas, métodos para IMC), Medicamento (inventario por cajas, control de dosis diarias, fechas de caducidad, historial de cambios, métodos de cálculo), Dosis (seguimiento de tomas, adherencia, efectos secundarios).
-- Rutas API: registro/login de usuarios, gestión de perfil, medicamentos, dosis, inventario y estadísticas.
-- Sistema de inventario de medicamentos por cajas, control de dosis diarias, marcadores de consumo, cálculo de pastillas restantes, control de fechas de caducidad por caja y alertas automáticas.
-- Endpoints para agregar cajas, marcar dosis como tomadas, resetear dosis diarias y obtener estadísticas de inventario y vencimientos.
-- Registro semanal de peso, control de peso, IMC, calorías y menús.
-- Documentación detallada en README, incluyendo explicación del nombre IbnSina y licencia GPLv3.
-- Configuración de entorno y dependencias (backend y frontend).
-- Instalación y configuración de MongoDB Community en macOS.
+### Changed
+- Actualizada documentación del README
+- Mejorada la estructura de archivos del proyecto
 
-### Documentación
-- **API.md**: Documentación completa de todos los endpoints de la API con ejemplos de uso.
-- **DEPLOYMENT.md**: Guía detallada de despliegue en producción con configuraciones de servidor.
-- **CONTRIBUTING.md**: Guías de contribución con pautas de código y proceso de desarrollo.
-- **SECURITY.md**: Política de seguridad y procedimientos para reportar vulnerabilidades.
-- **CHANGELOG.md**: Historial de versiones siguiendo el formato Keep a Changelog.
-- Actualización del README principal con referencias a toda la documentación.
-- Personalización del README del cliente con información específica del proyecto.
+## [0.1.0] - 2025-01-13
 
-[Unreleased]: https://github.com/tu_usuario/IbnSina/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/tu_usuario/IbnSina/releases/tag/v1.0.0 
+### Added
+- Estructura inicial del proyecto MERN
+- Backend con Node.js y Express
+- Modelos de MongoDB para Usuario, Medicamento y Dosis
+- Rutas API básicas para medicamentos
+- Frontend con React y TypeScript
+- Documentación inicial del proyecto
+- README con explicación del origen del nombre IbnSina
+- Archivos de configuración y dependencias
+- Licencia GPLv3
+- Guías de contribución, despliegue y seguridad
+
+### Changed
+- Configuración inicial del entorno de desarrollo
+- Estructura de carpetas organizada
+
+---
+
+## Notas de Versión
+
+### v0.2.0
+Esta versión introduce el sistema completo de control de signos vitales, con clasificación automática según estándares médicos internacionales y alertas para valores críticos.
+
+### v0.1.0
+Versión inicial del proyecto con la estructura base MERN y documentación completa. 

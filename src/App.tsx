@@ -7,12 +7,19 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
+import MenuNavegacion from './components/MenuNavegacion';
+import RegistroSignosVitales from './pages/RegistroSignosVitales';
+import HistorialSignosVitales from './pages/HistorialSignosVitales';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
-function MyApp() {
+function App() {
   const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [page, setPage] = React.useState<'registro' | 'historial'>('registro');
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -38,6 +45,9 @@ function MyApp() {
         <CssBaseline />
         <AppBar position="static">
           <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={() => setMenuOpen(true)}>
+              <MenuIcon />
+            </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               IbnSina
             </Typography>
@@ -46,15 +56,14 @@ function MyApp() {
             </IconButton>
           </Toolbar>
         </AppBar>
+        <MenuNavegacion open={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={setPage} />
         <Box sx={{ p: 2 }}>
-          {/* Aquí irán las páginas y componentes principales */}
-          <Typography variant="body1">
-            ¡Bienvenido a IbnSina! Selecciona una opción del menú para comenzar.
-          </Typography>
+          {page === 'registro' && <RegistroSignosVitales />}
+          {page === 'historial' && <HistorialSignosVitales />}
         </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
 }
 
-export default MyApp;
+export default App; 

@@ -1,114 +1,195 @@
-# IbnSina - Control de Medicamentos
+# IbnSina - Sistema de Control de Medicamentos
 
 ## Descripción
-Aplicación web desarrollada para el control y gestión de medicamentos personales. Diseñada específicamente para pacientes con condiciones crónicas como hipertensión y diabetes que requieren medicación diaria.
+IbnSina es un sistema integral de control de medicamentos y signos vitales diseñado para pacientes con condiciones crónicas como hipertensión y diabetes. El nombre está inspirado en Avicena (Ibn Sina), el médico y filósofo persa del siglo XI, considerado uno de los padres de la medicina moderna.
 
-## Desarrollador
-- **Rodrigo Álvarez**
-- Contacto: incognia@gmail.com
+### Origen del Nombre
+**Avicena (980-1037)** fue un médico, filósofo y científico persa que revolucionó la medicina medieval. Su obra "El Canon de la Medicina" fue un texto médico estándar en Europa y el mundo islámico durante siglos. Avicena estableció las bases de la medicina basada en evidencia y desarrolló técnicas quirúrgicas avanzadas para su época. Su enfoque sistemático en el diagnóstico y tratamiento de enfermedades, junto con su énfasis en la observación clínica, lo convierte en una figura inspiradora para sistemas médicos modernos.
 
 ## Características Principales
-- 📋 Catálogo de medicamentos personal
-- ⏰ Recordatorios de medicación
-- 📊 Seguimiento de dosis tomadas
-- 📅 Historial de medicación
-- 🔔 Alertas y notificaciones
-- 📱 Interfaz responsive y moderna
-- ⚖️ Registro semanal de peso corporal
-- 🧮 Cálculo automático de IMC
-- 🍽️ Conteo de calorías y sugerencia de menús saludables
-- 🩸 Control de glucosa (ayunas, postprandial, aleatoria)
-- ❤️ Monitoreo de presión arterial (sistólica, diastólica, pulso)
-- 💨 Seguimiento de oxigenación sanguínea
-- 🌡️ Registro de temperatura corporal
-- 📏 Medición de circunferencia de cintura
-- 📈 Estadísticas y tendencias de signos vitales
-- ⚠️ Alertas automáticas según rangos médicos
+
+### Backend (Node.js/Express)
+- ✅ **API RESTful completa** para gestión de medicamentos y signos vitales
+- ✅ **Sistema de signos vitales** con clasificación automática según estándares médicos
+- ✅ **Alertas automáticas** basadas en valores críticos (ADA, AHA, OMS)
+- ✅ **Cálculo automático de IMC** y clasificación de peso
+- ✅ **Base de datos MongoDB** con modelos optimizados
+- ✅ **Validaciones robustas** y manejo de errores
+
+### Frontend (React/TypeScript)
+- ✅ **Interfaz moderna con Material UI** optimizada para dispositivos móviles
+- ✅ **Soporte de tema claro/oscuro** con modo oscuro por defecto
+- ✅ **Navegación lateral** con menú hamburguesa
+- ✅ **Estructura modular** con componentes reutilizables
+- ✅ **Páginas de registro e historial** de signos vitales
+
+### Signos Vitales Soportados
+- **Glucosa** (mg/dL) - Clasificación ADA
+- **Presión Arterial** (mmHg) - Clasificación AHA
+- **Oxigenación** (%) - Clasificación OMS
+- **Temperatura** (°C) - Clasificación OMS
+- **Peso** (kg) - Cálculo automático de IMC
+- **Circunferencia de Cintura** (cm)
+- **Síntomas** (texto libre)
+- **Dispositivo** (identificación del medidor)
 
 ## Tecnologías Utilizadas
-- **Backend**: Node.js, Express, MongoDB
-- **Frontend**: React.js, Material-UI
-- **Base de Datos**: MongoDB con Mongoose
-- **Autenticación**: JWT
 
-## Instalación
+### Backend
+- **Node.js** - Runtime de JavaScript
+- **Express.js** - Framework web
+- **MongoDB** - Base de datos NoSQL
+- **Mongoose** - ODM para MongoDB
+- **CORS** - Soporte para peticiones cross-origin
+
+### Frontend
+- **React 19.1.0** - Biblioteca de interfaz de usuario
+- **TypeScript 4.9.5** - Tipado estático
+- **Material-UI (MUI)** - Componentes de interfaz
+- **React Scripts 5.0.1** - Herramientas de desarrollo
+
+## Instalación y Configuración
 
 ### Prerrequisitos
-- Node.js (v16 o superior)
-- MongoDB instalado y ejecutándose
+- Node.js (versión 18 o superior)
+- MongoDB Community Server
 - npm o yarn
 
-### Pasos de Instalación
+### Instalación
 
-1. **Clonar el repositorio**
+1. **Clonar el repositorio:**
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/incognia/IbnSina.git
 cd IbnSina
 ```
 
-2. **Instalar dependencias**
+2. **Instalar dependencias del backend:**
 ```bash
-npm run install-all
+npm install
 ```
 
-3. **Configurar variables de entorno**
+3. **Instalar dependencias del frontend:**
 ```bash
-cp .env.example .env
+cd client
+npm install
 ```
-Editar el archivo `.env` con tus configuraciones de MongoDB.
 
-4. **Ejecutar en modo desarrollo**
+4. **Configurar MongoDB:**
+   - Instalar MongoDB Community Server
+   - Crear base de datos `ibnsina`
+   - Configurar variables de entorno (ver `env.example`)
+
+5. **Configurar variables de entorno:**
 ```bash
-npm run dev
+cp env.example .env
+# Editar .env con tus configuraciones
 ```
 
-## Estructura del Proyecto
-```
-IbnSina/
-├── server/                 # Backend (Node.js + Express)
-│   ├── controllers/        # Controladores de la API
-│   ├── models/            # Modelos de MongoDB
-│   ├── routes/            # Rutas de la API
-│   ├── middleware/        # Middleware personalizado
-│   └── config/            # Configuraciones
-├── client/                # Frontend (React)
-│   ├── src/
-│   │   ├── components/    # Componentes React
-│   │   ├── pages/         # Páginas de la aplicación
-│   │   ├── services/      # Servicios API
-│   │   └── styles/        # Estilos CSS
-│   └── public/            # Archivos estáticos
-└── package.json
+### Ejecución
+
+1. **Iniciar el backend:**
+```bash
+# Desde la raíz del proyecto
+npm start
+# El servidor estará disponible en http://localhost:5000
 ```
 
-## Scripts Disponibles
-- `npm run dev`: Ejecuta servidor y cliente en modo desarrollo
-- `npm run server`: Solo el servidor backend
-- `npm run client`: Solo el cliente frontend
-- `npm run build`: Construye la aplicación para producción
+2. **Iniciar el frontend:**
+```bash
+# Desde la carpeta client
+cd client
+npm start
+# La aplicación estará disponible en http://localhost:3000
+```
+
+**Nota:** En macOS, si tienes activado el "Receptor AirPlay" en Configuración del Sistema, puede causar conflictos con el puerto 5000. Desactívalo temporalmente o cambia el puerto del backend.
+
+## Uso
+
+### Interfaz Web
+1. Abre http://localhost:3000 en tu navegador
+2. Usa el menú hamburguesa para navegar entre secciones
+3. Cambia entre tema claro/oscuro con el botón en la barra superior
+4. Registra tus signos vitales en la sección "Registro"
+5. Consulta tu historial en la sección "Historial"
+
+### API REST
+Consulta la [documentación completa de la API](API.md) para todas las operaciones disponibles.
 
 ## Documentación
 
-### 📚 Guías Principales
-- **[API Documentation](API.md)** - Documentación completa de la API
-- **[Deployment Guide](DEPLOYMENT.md)** - Guía de despliegue en producción
-- **[Contributing Guide](CONTRIBUTING.md)** - Cómo contribuir al proyecto
-- **[Security Policy](SECURITY.md)** - Política de seguridad y reporte de vulnerabilidades
+- **[API.md](API.md)** - Documentación completa de la API REST
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Guía de despliegue
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Guía de contribución
+- **[SECURITY.md](SECURITY.md)** - Política de seguridad
+- **[EJEMPLOS_SIGNOS_VITALES.md](EJEMPLOS_SIGNOS_VITALES.md)** - Ejemplos prácticos de uso
 
-### 📋 Control de Cambios
-- **[CHANGELOG](CHANGELOG.md)** - Historial de versiones y cambios
+## Estructura del Proyecto
 
-### 📖 Ejemplos de Uso
-- **[Ejemplos Signos Vitales](EJEMPLOS_SIGNOS_VITALES.md)** - Ejemplos prácticos del control de signos vitales
+```
+IbnSina/
+├── server/                 # Backend (Node.js/Express)
+│   ├── models/            # Modelos de MongoDB
+│   ├── routes/            # Rutas de la API
+│   └── index.js           # Servidor principal
+├── client/                # Frontend (React/TypeScript)
+│   ├── src/
+│   │   ├── components/    # Componentes reutilizables
+│   │   ├── pages/         # Páginas principales
+│   │   ├── services/      # Servicios API
+│   │   ├── styles/        # Estilos CSS
+│   │   └── utils/         # Utilidades
+│   └── public/            # Archivos estáticos
+├── docs/                  # Documentación adicional
+└── README.md              # Este archivo
+```
+
+## Características Avanzadas
+
+### Clasificación Automática de Signos Vitales
+El sistema clasifica automáticamente los valores según estándares médicos internacionales:
+
+- **Glucosa:** Según criterios ADA (American Diabetes Association)
+- **Presión Arterial:** Según criterios AHA (American Heart Association)
+- **Oxigenación y Temperatura:** Según criterios OMS (Organización Mundial de la Salud)
+
+### Alertas Automáticas
+El sistema genera alertas automáticas para valores críticos:
+- Glucosa > 200 mg/dL (Hiperglucemia)
+- Presión sistólica > 140 mmHg (Hipertensión)
+- Oxigenación < 95% (Hipoxemia)
+- Temperatura > 38°C (Fiebre)
+
+### Cálculo de IMC
+El sistema calcula automáticamente el Índice de Masa Corporal (IMC) y clasifica el peso:
+- Bajo peso: IMC < 18.5
+- Peso normal: IMC 18.5-24.9
+- Sobrepeso: IMC 25-29.9
+- Obesidad: IMC ≥ 30
+
+## Próximos Pasos
+
+- [ ] **Formulario de registro** de signos vitales
+- [ ] **Visualización de historial** con gráficos
+- [ ] **Sistema de notificaciones** para alertas
+- [ ] **Reportes médicos** en PDF
+- [ ] **Sincronización móvil** con PWA
+- [ ] **Autenticación de usuarios**
+- [ ] **Compartir datos** con médicos
+
+## Contribución
+
+¡Las contribuciones son bienvenidas! Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
 
 ## Licencia
-Este proyecto está licenciado bajo los términos de la licencia GNU General Public License v3.0 o posterior (GPLv3).
-Copyright (c) Rodrigo Ernesto Álvarez Aguilera
-Consulta el archivo LICENSE para más detalles.
 
-## Contacto
-Desarrollado por Rodrigo Ernesto Álvarez Aguilera 
+Este proyecto está bajo la Licencia GPLv3. Ver [LICENSE](LICENSE) para más detalles.
 
-## ¿Por qué el nombre IbnSina?
+## Desarrollador
 
-El nombre del proyecto hace honor a **Ibn Siná** (Avicena, 980-1037), uno de los médicos y pensadores más influyentes de la historia. Nacido en la actual Uzbekistán, Ibn Siná fue un polímata persa de la época de oro del Islam, conocido en Occidente como Avicena. Su obra más famosa, el _Canon de la Medicina_, fue el texto médico de referencia en Europa y el mundo islámico durante siglos. Además de sus contribuciones a la medicina, escribió sobre filosofía, matemáticas, astronomía y música, y es considerado uno de los padres de la medicina moderna y la ciencia experimental. Elegí este nombre como homenaje a su legado y a la importancia del conocimiento y el autocuidado en la salud. 
+- **Rodrigo Álvarez**
+- Contacto: incognia@gmail.com
+
+---
+
+*"La medicina es el arte de imitar los procedimientos curativos de la naturaleza." - Avicena* 
