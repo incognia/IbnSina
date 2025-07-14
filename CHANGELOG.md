@@ -7,10 +7,12 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+- (Sin cambios, futuros cambios se documentarán aquí)
+
+## [0.3.1] - 2025-07-14
+
 ### Added
 - Botón de eliminar registro al final de cada fila del historial de signos vitales en el frontend. Permite borrar un registro completo con confirmación y actualización inmediata de la tabla.
-
-- (Sin cambios, futuros cambios se documentarán aquí)
 
 ## [0.3.0] - 2025-07-14
 
