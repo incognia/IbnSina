@@ -280,6 +280,41 @@ Obtiene alertas recientes de signos vitales.
 }
 ```
 
+### Respuesta de ejemplo para GET /api/signos-vitales
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "...",
+      "fecha": "2024-06-14T12:34:56.789Z",
+      "glucosa": { "valor": 110, "tipo": "ayunas", "unidad": "mg/dL" },
+      "presionArterial": { "sistolica": 120, "diastolica": 80 },
+      "oxigenacion": { "valor": 98 },
+      "temperatura": { "valor": 36.7, "unidad": "°C" },
+      "peso": { "valor": 70 },
+      "circunferenciaCintura": { "valor": 90 },
+      "dispositivo": { "tipo": "tensiometro" },
+      "alertas": ["Presión arterial elevada"],
+      "imc": 24.2,
+      "clasificacionIMC": "peso_normal",
+      "createdAt": "2024-06-14T12:34:56.789Z",
+      "updatedAt": "2024-06-14T12:34:56.789Z"
+    }
+    // ... más registros ...
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 42,
+    "pages": 3
+  }
+}
+```
+
+- La propiedad `data` es un array de registros, cada uno con estructura anidada para los distintos signos vitales.
+
 ## Desarrollador
 - **Rodrigo Álvarez**
 - Contacto: incognia@gmail.com 

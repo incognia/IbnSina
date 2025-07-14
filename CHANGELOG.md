@@ -20,6 +20,11 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 - Actualizada documentación del README principal
 - Mejorada la estructura del proyecto con carpetas organizadas
 
+### Corregido
+- Se actualizaron los tipos y el servicio de API en el frontend para reflejar la estructura anidada real de los signos vitales proveniente del backend.
+- Se corrigió la visualización del historial de signos vitales para acceder correctamente a los valores anidados (por ejemplo, glucosa.valor, presionArterial.sistolica, etc.).
+- Se eliminó una advertencia de ESLint por importación no utilizada en el formulario de registro de signos vitales.
+
 ## [0.2.0] - 2025-01-14
 
 ### Added

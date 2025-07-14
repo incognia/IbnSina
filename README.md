@@ -193,3 +193,9 @@ Este proyecto está bajo la Licencia GPLv3. Ver [LICENSE](LICENSE) para más det
 ---
 
 *"La medicina es el arte de imitar los procedimientos curativos de la naturaleza." - Avicena* 
+
+## Notas de desarrollo
+
+- La estructura de los datos de signos vitales en el frontend ahora corresponde a la estructura anidada del backend (por ejemplo, glucosa.valor, presionArterial.sistolica, etc.).
+- El historial de signos vitales muestra correctamente los valores anidados y alertas.
+- Se corrigieron advertencias de ESLint relacionadas con importaciones no utilizadas. 
