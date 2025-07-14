@@ -7,6 +7,10 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+- (Sin cambios, futuros cambios se documentarán aquí)
+
+## [0.3.0] - 2025-07-14
+
 ### Added
 - Frontend completo con React y TypeScript
 - Interfaz moderna con Material UI (MUI)
@@ -15,15 +19,19 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 - Páginas de registro e historial de signos vitales
 - Estructura modular de componentes y páginas
 - Optimización para dispositivos móviles
+- Release estable para registro de signos vitales con dispositivos diferenciados por medición.
 
 ### Changed
 - Actualizada documentación del README principal
 - Mejorada la estructura del proyecto con carpetas organizadas
+- Se corrigieron y unificaron las validaciones de los campos 'dispositivo.tipo' en el backend para cada subdocumento de signos vitales (glucosa, presión arterial, oxigenación, temperatura, peso, cintura, pulso).
+- Ahora el registro de signos vitales desde el frontend es completamente compatible y estable con la API.
 
-### Corregido
+### Fixed
 - Se actualizaron los tipos y el servicio de API en el frontend para reflejar la estructura anidada real de los signos vitales proveniente del backend.
 - Se corrigió la visualización del historial de signos vitales para acceder correctamente a los valores anidados (por ejemplo, glucosa.valor, presionArterial.sistolica, etc.).
 - Se eliminó una advertencia de ESLint por importación no utilizada en el formulario de registro de signos vitales.
+- Eliminada la validación incorrecta de 'dispositivo.tipo' a nivel raíz que impedía registrar signos vitales con dispositivos válidos.
 
 ### Cambios importantes
 - El modelo de signos vitales ahora permite registrar el dispositivo usado para cada medición (glucosa, presión arterial, oxigenación, temperatura, peso, cintura, pulso).
@@ -64,18 +72,6 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 ### Changed
 - Configuración inicial del entorno de desarrollo
 - Estructura de carpetas organizada
-
-## [0.3.0] - 2025-07-14
-
-### Changed
-- Se corrigieron y unificaron las validaciones de los campos 'dispositivo.tipo' en el backend para cada subdocumento de signos vitales (glucosa, presión arterial, oxigenación, temperatura, peso, cintura, pulso).
-- Ahora el registro de signos vitales desde el frontend es completamente compatible y estable con la API.
-
-### Fixed
-- Eliminada la validación incorrecta de 'dispositivo.tipo' a nivel raíz que impedía registrar signos vitales con dispositivos válidos.
-
-### Added
-- Release estable para registro de signos vitales con dispositivos diferenciados por medición.
 
 ---
 
