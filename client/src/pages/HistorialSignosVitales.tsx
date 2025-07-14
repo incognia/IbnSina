@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, CircularProgress, Alert } from '@mui/material';
+import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, CircularProgress, Alert, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import apiService, { SignosVitalesResponse } from '../services/api';
 
 const HistorialSignosVitales: React.FC = () => {
   const [registros, setRegistros] = useState<SignosVitalesResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [registroAEliminar, setRegistroAEliminar] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHistorial = async () => {
@@ -22,6 +25,29 @@ const HistorialSignosVitales: React.FC = () => {
     };
     fetchHistorial();
   }, []);
+
+  const handleDeleteClick = (id: string) => {
+    setRegistroAEliminar(id);
+    setDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!registroAEliminar) return;
+    try {
+      await apiService.eliminarRegistro(registroAEliminar);
+      setRegistros(registros => registros.filter(r => r._id !== registroAEliminar));
+    } catch (err) {
+      alert('No se pudo eliminar el registro.');
+    } finally {
+      setDialogOpen(false);
+      setRegistroAEliminar(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setDialogOpen(false);
+    setRegistroAEliminar(null);
+  };
 
   return (
     <Box sx={{ maxWidth: 1200, mx: 'auto', mt: 4 }}>
@@ -56,6 +82,7 @@ const HistorialSignosVitales: React.FC = () => {
                   <TableCell>Pulso</TableCell>
                   <TableCell>Dispositivo Pulso</TableCell>
                   <TableCell>Alertas</TableCell>
+                  <TableCell /> {/* Columna para el botón de borrar */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -83,6 +110,11 @@ const HistorialSignosVitales: React.FC = () => {
                           ))
                         : '-'}
                     </TableCell>
+                    <TableCell>
+                      <IconButton aria-label="Eliminar" color="error" onClick={() => handleDeleteClick(r._id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -90,6 +122,18 @@ const HistorialSignosVitales: React.FC = () => {
           </TableContainer>
         )}
       </Paper>
+      <Dialog open={dialogOpen} onClose={handleCancelDelete}>
+        <DialogTitle>Eliminar registro</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            ¿Estás seguro de que deseas eliminar este registro de signos vitales? Esta acción no se puede deshacer.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelDelete}>Cancelar</Button>
+          <Button onClick={handleConfirmDelete} color="error" variant="contained">Eliminar</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

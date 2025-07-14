@@ -112,6 +112,7 @@ npm start
 3. Cambia entre tema claro/oscuro con el botón en la barra superior
 4. Registra tus signos vitales en la sección "Registro"
 5. Consulta tu historial en la sección "Historial"
+6. **Ahora puedes eliminar cualquier registro de signos vitales desde el historial usando el botón de papelera al final de cada fila.**
 
 ### API REST
 Consulta la [documentación completa de la API](API.md) para todas las operaciones disponibles.
