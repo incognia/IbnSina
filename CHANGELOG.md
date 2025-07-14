@@ -9,6 +9,41 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - (Sin cambios, futuros cambios se documentarán aquí)
 
+## [0.4.0] - 2025-07-14
+
+### Added
+- Migración completa del frontend de React CRA a Next.js 15.3.5
+- App Router de Next.js con estructura moderna
+- React 19.0.0 con TypeScript 5
+- Navegación simplificada con botones entre registro e historial
+- Estructura de proyecto limpia y optimizada
+
+### Changed
+- Frontend migrado de Create React App a Next.js
+- Interfaz simplificada sin menú hamburguesa lateral
+- Navegación mediante botones "Registro" e "Historial"
+- Actualizada documentación del README para reflejar Next.js
+- Comandos de desarrollo actualizados (`npm run dev` en lugar de `npm start`)
+
+### Removed
+- **Eliminado completamente el campo 'dispositivo'** de todos los signos vitales por ser problemático e inútil en la implementación
+- Removidas todas las columnas de dispositivo del historial de signos vitales
+- Eliminadas validaciones y lógica de dispositivos en el backend
+- Removidos campos de dispositivo del modelo de MongoDB
+- Limpiados archivos y directorios residuales del stack anterior (CRA)
+- Eliminada documentación obsoleta sobre dispositivos
+
+### Fixed
+- Limpieza completa de residuos de migraciones previas
+- Estructura de proyecto optimizada y coherente
+- Base de datos limpiada de registros con campos de dispositivo
+- Documentación actualizada para reflejar la nueva arquitectura
+
+### Breaking Changes
+- **Cambio mayor:** Eliminación completa del campo 'dispositivo' en signos vitales
+- **Cambio mayor:** Migración de CRA a Next.js (requiere reinstalación de dependencias)
+- **Cambio mayor:** Nueva estructura de navegación (botones en lugar de menú lateral)
+
 ## [0.3.1] - 2025-07-14
 
 ### Added

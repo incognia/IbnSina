@@ -20,10 +20,10 @@ IbnSina es un sistema integral de control de medicamentos y signos vitales dise�
 - ✅ **Base de datos MongoDB** con modelos optimizados
 - ✅ **Validaciones robustas** y manejo de errores
 
-### Frontend (React/TypeScript)
+### Frontend (Next.js/TypeScript)
 - ✅ **Interfaz moderna con Material UI** optimizada para dispositivos móviles
 - ✅ **Soporte de tema claro/oscuro** con modo oscuro por defecto
-- ✅ **Navegación lateral** con menú hamburguesa
+- ✅ **Navegación con botones** entre registro e historial
 - ✅ **Estructura modular** con componentes reutilizables
 - ✅ **Páginas de registro e historial** de signos vitales
 
@@ -35,7 +35,6 @@ IbnSina es un sistema integral de control de medicamentos y signos vitales dise�
 - **Peso** (kg) - Cálculo automático de IMC
 - **Circunferencia de Cintura** (cm)
 - **Síntomas** (texto libre)
-- **Dispositivo** (identificación del medidor)
 
 ## Tecnologías Utilizadas
 
@@ -47,10 +46,10 @@ IbnSina es un sistema integral de control de medicamentos y signos vitales dise�
 - **CORS** - Soporte para peticiones cross-origin
 
 ### Frontend
-- **React 19.1.0** - Biblioteca de interfaz de usuario
-- **TypeScript 4.9.5** - Tipado estático
+- **Next.js 15.3.5** - Framework de React
+- **React 19.0.0** - Biblioteca de interfaz de usuario
+- **TypeScript 5** - Tipado estático
 - **Material-UI (MUI)** - Componentes de interfaz
-- **React Scripts 5.0.1** - Herramientas de desarrollo
 
 ## Instalación y Configuración
 
@@ -102,7 +101,7 @@ npm start
 ```bash
 # Desde la carpeta client
 cd client
-npm start
+npm run dev
 # La aplicación estará disponible en http://localhost:3000
 ```
 
@@ -112,11 +111,11 @@ npm start
 
 ### Interfaz Web
 1. Abre http://localhost:3000 en tu navegador
-2. Usa el menú hamburguesa para navegar entre secciones
+2. Usa los botones "Registro" e "Historial" para navegar entre secciones
 3. Cambia entre tema claro/oscuro con el botón en la barra superior
 4. Registra tus signos vitales en la sección "Registro"
 5. Consulta tu historial en la sección "Historial"
-6. **Ahora puedes eliminar cualquier registro de signos vitales desde el historial usando el botón de papelera al final de cada fila.**
+6. **Puedes eliminar cualquier registro de signos vitales desde el historial usando el botón de papelera al final de cada fila.**
 
 ### API REST
 Consulta la [documentación completa de la API](API.md) para todas las operaciones disponibles.
@@ -137,13 +136,11 @@ IbnSina/
 │   ├── models/            # Modelos de MongoDB
 │   ├── routes/            # Rutas de la API
 │   └── index.js           # Servidor principal
-├── client/                # Frontend (React/TypeScript)
+├── client/                # Frontend (Next.js/TypeScript)
 │   ├── src/
+│   │   ├── app/          # Páginas de Next.js App Router
 │   │   ├── components/    # Componentes reutilizables
-│   │   ├── pages/         # Páginas principales
-│   │   ├── services/      # Servicios API
-│   │   ├── styles/        # Estilos CSS
-│   │   └── utils/         # Utilidades
+│   │   └── services/      # Servicios API
 │   └── public/            # Archivos estáticos
 ├── docs/                  # Documentación adicional
 └── README.md              # Este archivo

@@ -1,119 +1,36 @@
-# IbnSina - Frontend
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Descripción
-Frontend de la aplicación IbnSina para el control de medicamentos y signos vitales, desarrollado con React, TypeScript y Material UI.
+## Getting Started
 
-## Tecnologías
-- React 19.1.0
-- TypeScript 4.9.5
-- React Scripts 5.0.1
-- Material-UI (MUI) - Componentes de interfaz
-- Emotion - Sistema de estilos
+First, run the development server:
 
-## Características Implementadas
-
-### ✅ Completado
-- **Interfaz moderna con Material UI** optimizada para dispositivos móviles
-- **Soporte de tema claro/oscuro** con modo oscuro por defecto
-- **Navegación lateral** con menú hamburguesa
-- **Estructura modular** con componentes reutilizables
-- **Páginas de registro e historial** de signos vitales
-- **AppBar responsivo** con switch de tema y menú
-
-### 🚧 En Desarrollo
-- Formulario de registro de signos vitales
-- Visualización de historial con gráficos
-- Conexión con API del backend
-- Sistema de alertas y notificaciones
-
-## Scripts Disponibles
-
-### `npm start`
-Ejecuta la aplicación en modo desarrollo.
-Abre [http://localhost:3000](http://localhost:3000) para verla en el navegador.
-
-### `npm test`
-Ejecuta el test runner en modo interactivo.
-
-### `npm run build`
-Construye la aplicación para producción en la carpeta `build`.
-
-### `npm run eject`
-**Nota: Esta es una operación unidireccional. Una vez que ejecutes `eject`, no podrás volver atrás.**
-
-## Estructura del Proyecto
-```
-client/
-├── public/           # Archivos estáticos
-├── src/              # Código fuente
-│   ├── components/   # Componentes React
-│   │   └── MenuNavegacion.tsx
-│   ├── pages/        # Páginas de la aplicación
-│   │   ├── RegistroSignosVitales.tsx
-│   │   └── HistorialSignosVitales.tsx
-│   ├── services/     # Servicios API (pendiente)
-│   ├── styles/       # Estilos CSS (pendiente)
-│   └── utils/        # Utilidades (pendiente)
-└── package.json
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Componentes Principales
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### App.tsx
-- Configuración del tema Material UI
-- Soporte de modo claro/oscuro
-- Navegación entre páginas
-- AppBar con menú y switch de tema
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### MenuNavegacion.tsx
-- Drawer lateral con opciones de navegación
-- Iconos descriptivos para cada sección
-- Integración con el sistema de navegación
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Páginas
-- **RegistroSignosVitales.tsx**: Formulario para registrar signos vitales
-- **HistorialSignosVitales.tsx**: Visualización del historial de registros
+## Learn More
 
-## Desarrollo
-Este frontend se conecta con el backend en `http://localhost:5000` para las operaciones de la API.
+To learn more about Next.js, take a look at the following resources:
 
-## Características de UX/UI
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Modo Oscuro por Defecto
-- Optimizado para uso nocturno y dispositivos móviles
-- Reduce la fatiga visual
-- Mejor contraste para lectura
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Navegación Intuitiva
-- Menú hamburguesa accesible
-- Iconos descriptivos
-- Transiciones suaves
+## Deploy on Vercel
 
-### Responsive Design
-- Optimizado para dispositivos móviles
-- Adaptable a diferentes tamaños de pantalla
-- Interfaz táctil amigable
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Próximos Pasos
-
-### Formulario de Registro
-- Campos para todos los signos vitales
-- Validaciones en tiempo real
-- Envío automático al backend
-
-### Historial y Gráficos
-- Tabla de registros históricos
-- Gráficos de tendencias
-- Filtros y búsqueda
-
-### Integración con API
-- Servicios para comunicación con backend
-- Manejo de estados de carga
-- Gestión de errores
-
-## Desarrollador
-- **Rodrigo Álvarez**
-- Contacto: incognia@gmail.com
-
-## Licencia
-GPLv3 - Rodrigo Ernesto Álvarez Aguilera
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
