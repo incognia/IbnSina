@@ -29,7 +29,15 @@ const signosVitalesSchema = new mongoose.Schema({
             enum: ['ayunas', 'postprandial', 'aleatoria', 'antes_comida', 'despues_comida'],
             required: function() { return this.glucosa && this.glucosa.valor; }
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['glucometro', 'smartwatch', 'otro']
+            }
+        }
     },
     // Presión arterial (mmHg)
     presionArterial: {
@@ -58,7 +66,15 @@ const signosVitalesSchema = new mongoose.Schema({
             enum: ['izquierdo', 'derecho'],
             default: 'izquierdo'
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['tensiometro', 'smartwatch', 'otro']
+            }
+        }
     },
     // Oxigenación (%)
     oxigenacion: {
@@ -67,7 +83,15 @@ const signosVitalesSchema = new mongoose.Schema({
             min: [70, 'Oxigenación demasiado baja'],
             max: [100, 'Oxigenación no puede ser mayor a 100%']
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['oximetro', 'smartwatch', 'otro']
+            }
+        }
     },
     // Temperatura (°C)
     temperatura: {
@@ -81,7 +105,15 @@ const signosVitalesSchema = new mongoose.Schema({
             enum: ['°C', '°F'],
             default: '°C'
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['termometro', 'otro']
+            }
+        }
     },
     // Peso (kg)
     peso: {
@@ -90,7 +122,15 @@ const signosVitalesSchema = new mongoose.Schema({
             min: [20, 'Peso demasiado bajo'],
             max: [500, 'Peso demasiado alto']
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['bascula', 'otro']
+            }
+        }
     },
     // Circunferencia de cintura (cm)
     circunferenciaCintura: {
@@ -99,7 +139,31 @@ const signosVitalesSchema = new mongoose.Schema({
             min: [50, 'Circunferencia demasiado baja'],
             max: [200, 'Circunferencia demasiado alta']
         },
-        notas: String
+        notas: String,
+        dispositivo: {
+            tipo: {
+                type: String,
+                enum: ['cinta_metrica'],
+                default: 'cinta_metrica'
+            }
+        }
+    },
+    // Pulso independiente
+    pulso: {
+        valor: {
+            type: Number,
+            min: [30, 'Pulso demasiado bajo'],
+            max: [200, 'Pulso demasiado alto']
+        },
+        notas: String,
+        dispositivo: {
+            marca: String,
+            modelo: String,
+            tipo: {
+                type: String,
+                enum: ['smartwatch', 'oximetro', 'tensiometro', 'otro']
+            }
+        }
     },
     // Síntomas asociados
     sintomas: [{
@@ -121,16 +185,6 @@ const signosVitalesSchema = new mongoose.Schema({
         type: String,
         enum: ['casa', 'consulta_medica', 'farmacia', 'hospital', 'otro'],
         default: 'casa'
-    },
-    // Dispositivo usado para la medición
-    dispositivo: {
-        marca: String,
-        modelo: String,
-        tipo: {
-            type: String,
-            enum: ['glucometro', 'tensiometro', 'oximetro', 'termometro', 'bascula', 'otro'],
-            required: true
-        }
     }
 }, {
     timestamps: true

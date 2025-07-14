@@ -196,6 +196,8 @@ Este proyecto está bajo la Licencia GPLv3. Ver [LICENSE](LICENSE) para más det
 
 ## Notas de desarrollo
 
+- A partir de la versión 0.3.0, la validación de dispositivos es estricta y diferenciada por cada medición (glucosa, presión, oxigenación, etc.), lo que garantiza compatibilidad total entre frontend y backend.
+- El registro de signos vitales es estable y la estructura de datos está alineada entre frontend y backend para evitar errores de validación.
 - La estructura de los datos de signos vitales en el frontend ahora corresponde a la estructura anidada del backend (por ejemplo, glucosa.valor, presionArterial.sistolica, etc.).
 - El historial de signos vitales muestra correctamente los valores anidados y alertas.
 - Se corrigieron advertencias de ESLint relacionadas con importaciones no utilizadas. 

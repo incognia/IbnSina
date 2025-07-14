@@ -183,53 +183,32 @@ Registra nuevos signos vitales.
 **Body:**
 ```json
 {
-  "fecha": "2024-06-15T10:30:00Z",
-  "glucosa": {
-    "valor": 120,
-    "unidad": "mg/dL",
-    "tipo": "ayunas",
-    "notas": "Medición en ayunas"
-  },
-  "presionArterial": {
-    "sistolica": 140,
-    "diastolica": 90,
-    "pulso": 72,
-    "posicion": "sentado",
-    "brazo": "izquierdo",
-    "notas": "Medición en reposo"
-  },
-  "oxigenacion": {
-    "valor": 98,
-    "notas": "Medición normal"
-  },
-  "peso": {
-    "valor": 75.5,
-    "notas": "Peso matutino"
-  },
-  "temperatura": {
-    "valor": 36.8,
-    "unidad": "°C"
-  },
-  "circunferenciaCintura": {
-    "valor": 95,
-    "notas": "Medición abdominal"
-  },
-  "sintomas": [
-    {
-      "nombre": "dolor_cabeza",
-      "intensidad": "leve",
-      "duracion": "2 horas"
-    }
-  ],
-  "notas": "Medición completa de la mañana",
-  "ubicacion": "casa",
-  "dispositivo": {
-    "marca": "Omron",
-    "modelo": "M3",
-    "tipo": "tensiometro"
-  }
+  "glucosa": { "valor": 110, "tipo": "ayunas", "dispositivo": { "tipo": "glucometro" } },
+  "presionArterial": { "sistolica": 120, "diastolica": 80, "dispositivo": { "tipo": "tensiometro" } },
+  "oxigenacion": { "valor": 98, "dispositivo": { "tipo": "oximetro" } },
+  "temperatura": { "valor": 36.7, "dispositivo": { "tipo": "termometro" } },
+  "peso": { "valor": 70, "dispositivo": { "tipo": "bascula" } },
+  "circunferenciaCintura": { "valor": 90, "dispositivo": { "tipo": "cinta_metrica" } },
+  "pulso": { "valor": 72, "dispositivo": { "tipo": "smartwatch" } }
 }
 ```
+
+> **Nota:** Cada subdocumento relevante debe incluir su propio campo `dispositivo` si se desea registrar el dispositivo usado. El campo `dispositivo` a nivel raíz ya no es válido ni aceptado.
+
+##### Validación de dispositivos por medición
+
+| Medición                | Valores permitidos para `dispositivo.tipo`         |
+|------------------------|---------------------------------------------------|
+| glucosa                | `glucometro`, `smartwatch`, `otro`                |
+| presionArterial        | `tensiometro`, `smartwatch`, `otro`               |
+| oxigenacion            | `oximetro`, `smartwatch`, `otro`                  |
+| temperatura            | `termometro`, `otro`                              |
+| peso                   | `bascula`, `otro`                                 |
+| circunferenciaCintura  | `cinta_metrica`                                   |
+| pulso                  | `smartwatch`, `oximetro`, `tensiometro`, `otro`   |
+
+- Si se envía un valor no permitido, la API responderá con error 400 y un mensaje de validación.
+- El campo `tipo` es obligatorio dentro de `dispositivo` si se incluye el objeto `dispositivo`.
 
 #### PUT /api/signos-vitales/:id
 Actualiza un registro de signos vitales.
@@ -280,6 +259,20 @@ Obtiene alertas recientes de signos vitales.
 }
 ```
 
+### Ejemplo de payload para registrar signos vitales
+
+```json
+{
+  "glucosa": { "valor": 110, "tipo": "ayunas", "dispositivo": { "tipo": "glucometro" } },
+  "presionArterial": { "sistolica": 120, "diastolica": 80, "dispositivo": { "tipo": "tensiometro" } },
+  "oxigenacion": { "valor": 98, "dispositivo": { "tipo": "oximetro" } },
+  "temperatura": { "valor": 36.7, "dispositivo": { "tipo": "termometro" } },
+  "peso": { "valor": 70, "dispositivo": { "tipo": "bascula" } },
+  "circunferenciaCintura": { "valor": 90, "dispositivo": { "tipo": "cinta_metrica" } },
+  "pulso": { "valor": 72, "dispositivo": { "tipo": "smartwatch" } }
+}
+```
+
 ### Respuesta de ejemplo para GET /api/signos-vitales
 
 ```json
@@ -289,13 +282,13 @@ Obtiene alertas recientes de signos vitales.
     {
       "_id": "...",
       "fecha": "2024-06-14T12:34:56.789Z",
-      "glucosa": { "valor": 110, "tipo": "ayunas", "unidad": "mg/dL" },
-      "presionArterial": { "sistolica": 120, "diastolica": 80 },
-      "oxigenacion": { "valor": 98 },
-      "temperatura": { "valor": 36.7, "unidad": "°C" },
-      "peso": { "valor": 70 },
-      "circunferenciaCintura": { "valor": 90 },
-      "dispositivo": { "tipo": "tensiometro" },
+      "glucosa": { "valor": 110, "tipo": "ayunas", "dispositivo": { "tipo": "glucometro" } },
+      "presionArterial": { "sistolica": 120, "diastolica": 80, "dispositivo": { "tipo": "tensiometro" } },
+      "oxigenacion": { "valor": 98, "dispositivo": { "tipo": "oximetro" } },
+      "temperatura": { "valor": 36.7, "dispositivo": { "tipo": "termometro" } },
+      "peso": { "valor": 70, "dispositivo": { "tipo": "bascula" } },
+      "circunferenciaCintura": { "valor": 90, "dispositivo": { "tipo": "cinta_metrica" } },
+      "pulso": { "valor": 72, "dispositivo": { "tipo": "smartwatch" } },
       "alertas": ["Presión arterial elevada"],
       "imc": 24.2,
       "clasificacionIMC": "peso_normal",
@@ -313,7 +306,8 @@ Obtiene alertas recientes de signos vitales.
 }
 ```
 
-- La propiedad `data` es un array de registros, cada uno con estructura anidada para los distintos signos vitales.
+- Cada subdocumento relevante tiene su propio campo `dispositivo`.
+- El campo `pulso` puede estar como subdocumento independiente o dentro de presión arterial.
 
 ## Desarrollador
 - **Rodrigo Álvarez**

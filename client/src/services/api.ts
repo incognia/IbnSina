@@ -5,6 +5,7 @@ export interface Glucosa {
   unidad?: string;
   tipo?: string;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface PresionArterial {
@@ -14,33 +15,38 @@ export interface PresionArterial {
   posicion?: string;
   brazo?: string;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface Oxigenacion {
   valor?: number;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface Temperatura {
   valor?: number;
   unidad?: string;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface Peso {
   valor?: number;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface CircunferenciaCintura {
   valor?: number;
   notas?: string;
+  dispositivo?: Dispositivo;
 }
 
-export interface Dispositivo {
-  marca?: string;
-  modelo?: string;
-  tipo?: string;
+export interface Pulso {
+  valor?: number;
+  notas?: string;
+  dispositivo?: Dispositivo;
 }
 
 export interface Sintoma {
@@ -56,10 +62,10 @@ export interface SignosVitales {
   temperatura?: Temperatura;
   peso?: Peso;
   circunferenciaCintura?: CircunferenciaCintura;
+  pulso?: Pulso;
   sintomas?: Sintoma[];
   notas?: string;
   ubicacion?: string;
-  dispositivo?: Dispositivo;
   fecha?: string;
 }
 
@@ -74,6 +80,12 @@ export interface SignosVitalesResponse extends SignosVitales {
   createdAt: string;
   updatedAt: string;
   fecha: string;
+}
+
+export interface Dispositivo {
+  marca?: string;
+  modelo?: string;
+  tipo?: string;
 }
 
 class ApiService {

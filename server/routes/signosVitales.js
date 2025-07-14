@@ -119,14 +119,21 @@ router.post('/', [
     body('fecha').optional().isISO8601().withMessage('Fecha inválida'),
     body('glucosa.valor').optional().isFloat({ min: 0, max: 1000 }).withMessage('Valor de glucosa inválido'),
     body('glucosa.tipo').optional().isIn(['ayunas', 'postprandial', 'aleatoria', 'antes_comida', 'despues_comida']).withMessage('Tipo de glucosa inválido'),
+    body('glucosa.dispositivo.tipo').optional().isIn(['glucometro', 'smartwatch', 'otro']).withMessage('Tipo de dispositivo de glucosa inválido'),
     body('presionArterial.sistolica').optional().isFloat({ min: 50, max: 300 }).withMessage('Presión sistólica inválida'),
     body('presionArterial.diastolica').optional().isFloat({ min: 30, max: 200 }).withMessage('Presión diastólica inválida'),
     body('presionArterial.pulso').optional().isFloat({ min: 30, max: 200 }).withMessage('Pulso inválido'),
+    body('presionArterial.dispositivo.tipo').optional().isIn(['tensiometro', 'smartwatch', 'otro']).withMessage('Tipo de dispositivo de presión inválido'),
     body('oxigenacion.valor').optional().isFloat({ min: 70, max: 100 }).withMessage('Oxigenación inválida'),
+    body('oxigenacion.dispositivo.tipo').optional().isIn(['oximetro', 'smartwatch', 'otro']).withMessage('Tipo de dispositivo de oxigenación inválido'),
     body('temperatura.valor').optional().isFloat({ min: 30, max: 45 }).withMessage('Temperatura inválida'),
+    body('temperatura.dispositivo.tipo').optional().isIn(['termometro', 'otro']).withMessage('Tipo de dispositivo de temperatura inválido'),
     body('peso.valor').optional().isFloat({ min: 20, max: 500 }).withMessage('Peso inválido'),
+    body('peso.dispositivo.tipo').optional().isIn(['bascula', 'otro']).withMessage('Tipo de dispositivo de peso inválido'),
     body('circunferenciaCintura.valor').optional().isFloat({ min: 50, max: 200 }).withMessage('Circunferencia inválida'),
-    body('dispositivo.tipo').isIn(['glucometro', 'tensiometro', 'oximetro', 'termometro', 'bascula', 'otro']).withMessage('Tipo de dispositivo inválido')
+    body('circunferenciaCintura.dispositivo.tipo').optional().isIn(['cinta_metrica']).withMessage('Tipo de dispositivo de cintura inválido'),
+    body('pulso.valor').optional().isFloat({ min: 30, max: 200 }).withMessage('Pulso inválido'),
+    body('pulso.dispositivo.tipo').optional().isIn(['smartwatch', 'oximetro', 'tensiometro', 'otro']).withMessage('Tipo de dispositivo de pulso inválido')
 ], async (req, res) => {
     try {
         // Verificar errores de validación
@@ -140,8 +147,8 @@ router.post('/', [
         }
 
         // Verificar que al menos un signo vital esté presente
-        const { glucosa, presionArterial, oxigenacion, temperatura, peso, circunferenciaCintura } = req.body;
-        if (!glucosa && !presionArterial && !oxigenacion && !temperatura && !peso && !circunferenciaCintura) {
+        const { glucosa, presionArterial, oxigenacion, temperatura, peso, circunferenciaCintura, pulso } = req.body;
+        if (!glucosa && !presionArterial && !oxigenacion && !temperatura && !peso && !circunferenciaCintura && !pulso) {
             return res.status(400).json({
                 success: false,
                 error: 'Debe registrar al menos un signo vital'

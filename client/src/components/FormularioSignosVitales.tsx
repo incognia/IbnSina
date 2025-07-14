@@ -22,27 +22,79 @@ import apiService from '../services/api';
 
 interface FormData {
   glucosa: number | '';
+  glucosaDispositivo: string;
   presionSistolica: number | '';
   presionDiastolica: number | '';
+  presionDispositivo: string;
   oxigenacion: number | '';
+  oxigenacionDispositivo: string;
   temperatura: number | '';
+  temperaturaDispositivo: string;
   peso: number | '';
+  pesoDispositivo: string;
   circunferenciaCintura: number | '';
+  cinturaDispositivo: string;
+  pulso: number | '';
+  pulsoDispositivo: string;
   sintomas: string;
-  dispositivo: string;
 }
+
+const dispositivoPorDefecto = {
+  glucosa: 'glucometro',
+  presion: 'tensiometro',
+  oxigenacion: 'smartwatch',
+  temperatura: 'termometro',
+  peso: 'bascula',
+  cintura: 'cinta_metrica',
+  pulso: 'smartwatch',
+};
+
+const opcionesDispositivo = {
+  glucosa: [
+    { value: 'glucometro', label: 'Glucometro' },
+  ],
+  presion: [
+    { value: 'tensiometro', label: 'Tensiómetro' },
+  ],
+  oxigenacion: [
+    { value: 'oximetro', label: 'Oxímetro' },
+    { value: 'smartwatch', label: 'Mi Band 9' },
+  ],
+  temperatura: [
+    { value: 'termometro', label: 'Termómetro' },
+  ],
+  peso: [
+    { value: 'bascula', label: 'Báscula' },
+  ],
+  cintura: [
+    { value: 'cinta_metrica', label: 'Cinta métrica' },
+  ],
+  pulso: [
+    { value: 'smartwatch', label: 'Mi Band 9' },
+    { value: 'oximetro', label: 'Oxímetro' },
+    { value: 'tensiometro', label: 'Tensiómetro' },
+    { value: 'otro', label: 'Otro' },
+  ],
+};
 
 const FormularioSignosVitales: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     glucosa: '',
+    glucosaDispositivo: dispositivoPorDefecto.glucosa,
     presionSistolica: '',
     presionDiastolica: '',
+    presionDispositivo: dispositivoPorDefecto.presion,
     oxigenacion: '',
+    oxigenacionDispositivo: dispositivoPorDefecto.oxigenacion,
     temperatura: '',
+    temperaturaDispositivo: dispositivoPorDefecto.temperatura,
     peso: '',
+    pesoDispositivo: dispositivoPorDefecto.peso,
     circunferenciaCintura: '',
+    cinturaDispositivo: dispositivoPorDefecto.cintura,
+    pulso: '',
+    pulsoDispositivo: dispositivoPorDefecto.pulso,
     sintomas: '',
-    dispositivo: ''
   });
 
   const [alertas, setAlertas] = useState<string[]>([]);
@@ -52,6 +104,13 @@ const FormularioSignosVitales: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (field: keyof FormData, value: string | number) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleDispositivoChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -125,14 +184,21 @@ const FormularioSignosVitales: React.FC = () => {
   const limpiarFormulario = () => {
     setFormData({
       glucosa: '',
+      glucosaDispositivo: dispositivoPorDefecto.glucosa,
       presionSistolica: '',
       presionDiastolica: '',
+      presionDispositivo: dispositivoPorDefecto.presion,
       oxigenacion: '',
+      oxigenacionDispositivo: dispositivoPorDefecto.oxigenacion,
       temperatura: '',
+      temperaturaDispositivo: dispositivoPorDefecto.temperatura,
       peso: '',
+      pesoDispositivo: dispositivoPorDefecto.peso,
       circunferenciaCintura: '',
+      cinturaDispositivo: dispositivoPorDefecto.cintura,
+      pulso: '',
+      pulsoDispositivo: dispositivoPorDefecto.pulso,
       sintomas: '',
-      dispositivo: ''
     });
     setAlertas([]);
   };
@@ -145,16 +211,17 @@ const FormularioSignosVitales: React.FC = () => {
 
     // Preparar datos para enviar al backend con estructura anidada
     const datosParaEnviar: any = {};
-    if (formData.glucosa !== '') datosParaEnviar.glucosa = { valor: Number(formData.glucosa), tipo: 'ayunas' };
+    if (formData.glucosa !== '') datosParaEnviar.glucosa = { valor: Number(formData.glucosa), tipo: 'ayunas', dispositivo: { tipo: formData.glucosaDispositivo } };
     if (formData.presionSistolica !== '' || formData.presionDiastolica !== '') datosParaEnviar.presionArterial = {
       sistolica: formData.presionSistolica !== '' ? Number(formData.presionSistolica) : undefined,
-      diastolica: formData.presionDiastolica !== '' ? Number(formData.presionDiastolica) : undefined
+      diastolica: formData.presionDiastolica !== '' ? Number(formData.presionDiastolica) : undefined,
+      dispositivo: { tipo: formData.presionDispositivo }
     };
-    if (formData.oxigenacion !== '') datosParaEnviar.oxigenacion = { valor: Number(formData.oxigenacion) };
-    if (formData.temperatura !== '') datosParaEnviar.temperatura = { valor: Number(formData.temperatura) };
-    if (formData.peso !== '') datosParaEnviar.peso = { valor: Number(formData.peso) };
-    if (formData.circunferenciaCintura !== '') datosParaEnviar.circunferenciaCintura = { valor: Number(formData.circunferenciaCintura) };
-    if (formData.dispositivo) datosParaEnviar.dispositivo = { tipo: formData.dispositivo };
+    if (formData.oxigenacion !== '') datosParaEnviar.oxigenacion = { valor: Number(formData.oxigenacion), dispositivo: { tipo: formData.oxigenacionDispositivo } };
+    if (formData.temperatura !== '') datosParaEnviar.temperatura = { valor: Number(formData.temperatura), dispositivo: { tipo: formData.temperaturaDispositivo } };
+    if (formData.peso !== '') datosParaEnviar.peso = { valor: Number(formData.peso), dispositivo: { tipo: formData.pesoDispositivo } };
+    if (formData.circunferenciaCintura !== '') datosParaEnviar.circunferenciaCintura = { valor: Number(formData.circunferenciaCintura), dispositivo: { tipo: formData.cinturaDispositivo } };
+    if (formData.pulso !== '') datosParaEnviar.pulso = { valor: Number(formData.pulso), dispositivo: { tipo: formData.pulsoDispositivo } };
     if (formData.sintomas) datosParaEnviar.notas = formData.sintomas;
 
     setIsLoading(true);
@@ -189,95 +256,194 @@ const FormularioSignosVitales: React.FC = () => {
         </Typography>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          {/* Primera fila: Glucosa y Presión Arterial */}
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+          {/* Glucosa */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <TextField
               sx={{ flex: 1, minWidth: 200 }}
               label="Glucosa (mg/dL)"
               type="number"
               value={formData.glucosa}
               onChange={(e) => handleInputChange('glucosa', e.target.value)}
-              InputProps={{
-                startAdornment: <Monitor sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
+              InputProps={{ startAdornment: <Monitor sx={{ mr: 1, color: 'text.secondary' }} /> }}
               helperText="Valor normal: 70-200 mg/dL"
             />
-            
-            <Box sx={{ display: 'flex', gap: 1, flex: 1, minWidth: 200 }}>
-              <TextField
-                fullWidth
-                label="Presión Sistólica"
-                type="number"
-                value={formData.presionSistolica}
-                onChange={(e) => handleInputChange('presionSistolica', e.target.value)}
-                InputProps={{
-                  startAdornment: <Favorite sx={{ mr: 1, color: 'text.secondary' }} />
-                }}
-                helperText="mmHg"
-              />
-              <TextField
-                fullWidth
-                label="Presión Diastólica"
-                type="number"
-                value={formData.presionDiastolica}
-                onChange={(e) => handleInputChange('presionDiastolica', e.target.value)}
-                helperText="mmHg"
-              />
-            </Box>
+            {formData.glucosa !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.glucosaDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('glucosaDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.glucosa.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
           </Box>
-
-          {/* Segunda fila: Oxigenación y Temperatura */}
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+          {/* Presión arterial */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+            <TextField
+              sx={{ flex: 1, minWidth: 120 }}
+              label="Presión Sistólica"
+              type="number"
+              value={formData.presionSistolica}
+              onChange={(e) => handleInputChange('presionSistolica', e.target.value)}
+              InputProps={{ startAdornment: <Favorite sx={{ mr: 1, color: 'text.secondary' }} /> }}
+              helperText="mmHg"
+            />
+            <TextField
+              sx={{ flex: 1, minWidth: 120 }}
+              label="Presión Diastólica"
+              type="number"
+              value={formData.presionDiastolica}
+              onChange={(e) => handleInputChange('presionDiastolica', e.target.value)}
+              helperText="mmHg"
+            />
+            {(formData.presionSistolica !== '' || formData.presionDiastolica !== '') && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.presionDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('presionDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.presion.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          </Box>
+          {/* Oxigenación */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <TextField
               sx={{ flex: 1, minWidth: 200 }}
               label="Oxigenación (%)"
               type="number"
               value={formData.oxigenacion}
               onChange={(e) => handleInputChange('oxigenacion', e.target.value)}
-              InputProps={{
-                startAdornment: <Favorite sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
+              InputProps={{ startAdornment: <Favorite sx={{ mr: 1, color: 'text.secondary' }} /> }}
               helperText="Valor normal: 95-100%"
             />
-            
+            {formData.oxigenacion !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.oxigenacionDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('oxigenacionDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.oxigenacion.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          </Box>
+          {/* Temperatura */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <TextField
               sx={{ flex: 1, minWidth: 200 }}
               label="Temperatura (°C)"
               type="number"
               value={formData.temperatura}
               onChange={(e) => handleInputChange('temperatura', e.target.value)}
-              InputProps={{
-                startAdornment: <Thermostat sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
+              InputProps={{ startAdornment: <Thermostat sx={{ mr: 1, color: 'text.secondary' }} /> }}
               helperText="Valor normal: 36-38°C"
             />
+            {formData.temperatura !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.temperaturaDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('temperaturaDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.temperatura.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
           </Box>
-
-          {/* Tercera fila: Peso y Circunferencia */}
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+          {/* Peso */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <TextField
               sx={{ flex: 1, minWidth: 200 }}
               label="Peso (kg)"
               type="number"
               value={formData.peso}
               onChange={(e) => handleInputChange('peso', e.target.value)}
-              InputProps={{
-                startAdornment: <Scale sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
+              InputProps={{ startAdornment: <Scale sx={{ mr: 1, color: 'text.secondary' }} /> }}
             />
-            
+            {formData.peso !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.pesoDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('pesoDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.peso.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          </Box>
+          {/* Cintura */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <TextField
               sx={{ flex: 1, minWidth: 200 }}
               label="Circunferencia de Cintura (cm)"
               type="number"
               value={formData.circunferenciaCintura}
               onChange={(e) => handleInputChange('circunferenciaCintura', e.target.value)}
-              InputProps={{
-                startAdornment: <Height sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
+              InputProps={{ startAdornment: <Height sx={{ mr: 1, color: 'text.secondary' }} /> }}
             />
+            {formData.circunferenciaCintura !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.cinturaDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('cinturaDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.cintura.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
           </Box>
-
+          {/* Pulso independiente */}
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+            <TextField
+              sx={{ flex: 1, minWidth: 200 }}
+              label="Pulso (lpm)"
+              type="number"
+              value={formData.pulso}
+              onChange={(e) => handleInputChange('pulso', e.target.value)}
+              InputProps={{ startAdornment: <Favorite sx={{ mr: 1, color: 'text.secondary' }} /> }}
+              helperText="Latidos por minuto"
+            />
+            {formData.pulso !== '' && (
+              <FormControl sx={{ minWidth: 160 }}>
+                <InputLabel>Dispositivo</InputLabel>
+                <Select
+                  value={formData.pulsoDispositivo}
+                  label="Dispositivo"
+                  onChange={(e) => handleDispositivoChange('pulsoDispositivo', e.target.value as string)}
+                >
+                  {opcionesDispositivo.pulso.map(opt => (
+                    <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          </Box>
           {/* Síntomas */}
           <TextField
             fullWidth
@@ -288,24 +454,6 @@ const FormularioSignosVitales: React.FC = () => {
             onChange={(e) => handleInputChange('sintomas', e.target.value)}
             placeholder="Describe cualquier síntoma que experimentes..."
           />
-
-          {/* Dispositivo */}
-          <FormControl fullWidth>
-            <InputLabel>Dispositivo de Medición</InputLabel>
-            <Select
-              value={formData.dispositivo}
-              label="Dispositivo de Medición"
-              onChange={(e) => handleInputChange('dispositivo', e.target.value)}
-            >
-              <MenuItem value="glucometro">Glucometro</MenuItem>
-              <MenuItem value="tensiometro">Tensiómetro</MenuItem>
-              <MenuItem value="oximetro">Oxímetro</MenuItem>
-              <MenuItem value="termometro">Termómetro</MenuItem>
-              <MenuItem value="bascula">Báscula</MenuItem>
-              <MenuItem value="cinta_medicion">Cinta de Medición</MenuItem>
-              <MenuItem value="otro">Otro</MenuItem>
-            </Select>
-          </FormControl>
         </Box>
 
         {/* Cálculo de IMC */}

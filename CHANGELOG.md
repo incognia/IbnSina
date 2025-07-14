@@ -25,6 +25,11 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 - Se corrigió la visualización del historial de signos vitales para acceder correctamente a los valores anidados (por ejemplo, glucosa.valor, presionArterial.sistolica, etc.).
 - Se eliminó una advertencia de ESLint por importación no utilizada en el formulario de registro de signos vitales.
 
+### Cambios importantes
+- El modelo de signos vitales ahora permite registrar el dispositivo usado para cada medición (glucosa, presión arterial, oxigenación, temperatura, peso, cintura, pulso).
+- Se agregó un campo de pulso independiente, además del pulso dentro de presión arterial.
+- La API valida y expone los dispositivos por cada subdocumento relevante.
+
 ## [0.2.0] - 2025-01-14
 
 ### Added
@@ -59,6 +64,18 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 ### Changed
 - Configuración inicial del entorno de desarrollo
 - Estructura de carpetas organizada
+
+## [0.3.0] - 2025-07-14
+
+### Changed
+- Se corrigieron y unificaron las validaciones de los campos 'dispositivo.tipo' en el backend para cada subdocumento de signos vitales (glucosa, presión arterial, oxigenación, temperatura, peso, cintura, pulso).
+- Ahora el registro de signos vitales desde el frontend es completamente compatible y estable con la API.
+
+### Fixed
+- Eliminada la validación incorrecta de 'dispositivo.tipo' a nivel raíz que impedía registrar signos vitales con dispositivos válidos.
+
+### Added
+- Release estable para registro de signos vitales con dispositivos diferenciados por medición.
 
 ---
 
