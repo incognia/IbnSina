@@ -1,5 +1,10 @@
 # IbnSina - Sistema de Control de Medicamentos
 
+[![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases)
+[![GitHub tag](https://img.shields.io/github/v/tag/incognia/IbnSina)](https://github.com/incognia/IbnSina/tags)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/incognia/IbnSina/ci.yml?branch=main&label=build)](https://github.com/incognia/IbnSina/actions)
+[![License: GPL v3](https://img.shields.io/github/license/incognia/IbnSina)](LICENSE)
+
 ## Descripción
 IbnSina es un sistema integral de control de medicamentos y signos vitales diseñado para pacientes con condiciones crónicas como hipertensión y diabetes. El nombre está inspirado en Avicena (Ibn Sina), el médico y filósofo persa del siglo XI, considerado uno de los padres de la medicina moderna.
 
