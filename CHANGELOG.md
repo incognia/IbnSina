@@ -9,6 +9,13 @@ y este proyecto adhiere al [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - (Sin cambios, futuros cambios se documentarán aquí)
 
+## [0.4.1] - 2025-07-14
+
+### Fixed
+- Eliminado botón del menú hamburguesa sin funcionalidad de la AppBar
+- Interfaz simplificada y coherente con la navegación por botones
+- Limpieza del cache de Next.js para asegurar cambios visibles
+
 ## [0.4.0] - 2025-07-14
 
 ### Added
