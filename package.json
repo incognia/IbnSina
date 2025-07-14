@@ -1,6 +1,6 @@
 {
   "name": "ibnsina-medicamentos",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Aplicación web para el control de medicamentos - Desarrollada por Rodrigo Álvarez",
   "main": "server/index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 # IbnSina - Sistema de Control de Medicamentos
 
-[![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases)
+[![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases) [![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/incognia/IbnSina/releases/tag/v0.4.0)
 [![GitHub tag](https://img.shields.io/github/v/tag/incognia/IbnSina)](https://github.com/incognia/IbnSina/tags)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
@@ -171,8 +171,8 @@ El sistema calcula automáticamente el Índice de Masa Corporal (IMC) y clasific
 
 ## Próximos Pasos
 
-- [ ] **Formulario de registro** de signos vitales
-- [ ] **Visualización de historial** con gráficos
+- [x] **Formulario de registro** de signos vitales ✅
+- [x] **Visualización de historial** con tabla ✅
 - [ ] **Sistema de notificaciones** para alertas
 - [ ] **Reportes médicos** en PDF
 - [ ] **Sincronización móvil** con PWA
