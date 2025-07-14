@@ -1,6 +1,6 @@
 # IbnSina - Sistema de Control de Medicamentos
 
-[![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases) [![Version](https://img.shields.io/badge/version-0.4.1-blue.svg)](https://github.com/incognia/IbnSina/releases/tag/v0.4.1)
+[![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases)
 [![GitHub tag](https://img.shields.io/github/v/tag/incognia/IbnSina)](https://github.com/incognia/IbnSina/tags)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
