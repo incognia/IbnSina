@@ -2,7 +2,6 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/incognia/IbnSina?include_prereleases&label=release)](https://github.com/incognia/IbnSina/releases)
 [![GitHub tag](https://img.shields.io/github/v/tag/incognia/IbnSina)](https://github.com/incognia/IbnSina/tags)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/incognia/IbnSina/ci.yml?branch=main&label=build)](https://github.com/incognia/IbnSina/actions)
 [![License: GPL v3](https://img.shields.io/github/license/incognia/IbnSina)](LICENSE)
 
 ## Descripción
